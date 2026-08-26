@@ -1,0 +1,33 @@
+@baseUrl = http://localhost:3000/api/parties
+
+
+### Get all parties
+GET {{baseUrl}}
+
+
+### Get party by id
+GET {{baseUrl}}/PUT_PARTY_ID_HERE
+
+
+### Create party - Admin
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "name": "מפלגת החברה הטובים",
+  "slogan": "ביחד בונים חברה טובה יותר",
+  "description": "מפלגת החברה הטובים פועלת למען חברה צודקת, שוויונית וחזקה יותר."
+}
+
+
+### Update party - Admin
+PATCH {{baseUrl}}/PUT_PARTY_ID_HERE
+Content-Type: application/json
+
+{
+  "slogan": "ביחד בונים עתיד טוב יותר"
+}
+
+
+### Delete party - Admin
+DELETE {{baseUrl}}/PUT_PARTY_ID_HERE
