@@ -5,7 +5,7 @@ import { AuthRequest } from "../middleware/authMiddleware";
 
 export const registerUserController = async (req: Request, res: Response) => {
   try {
-    const { givenName, familyName, email, password } = req.body;
+    const { givenName, familyName, email, password, role } = req.body;
 
     if (!givenName || !familyName || !email || !password) {
       res.status(400).json({
@@ -16,11 +16,21 @@ export const registerUserController = async (req: Request, res: Response) => {
       return;
     }
 
+    if (role && role !== "member" && role !== "candidate") {
+      res.status(400).json({
+        success: false,
+        message: "Invalid role",
+      });
+
+      return;
+    }
+
     const user = await registerUser({
       givenName,
       familyName,
       email,
       password,
+      role: role ?? "member",
     });
 
     res.status(201).json({

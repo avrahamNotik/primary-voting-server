@@ -1,5 +1,7 @@
 import { eq } from "drizzle-orm";
 
+import { deleteFile } from "./fileService";
+
 import { db } from "../db";
 import { candidates } from "../db/schema";
 
@@ -39,6 +41,14 @@ export const updateCandidate = async (
     platformPdfUrl: string;
   }>,
 ) => {
+  // מביאים את המועמד לפני העדכון
+  const existingCandidate = await getCandidateById(id);
+
+  if (!existingCandidate) {
+    return undefined;
+  }
+
+  // מעדכנים את ה-DB קודם
   const [candidate] = await db
     .update(candidates)
     .set({
@@ -47,6 +57,23 @@ export const updateCandidate = async (
     })
     .where(eq(candidates.id, id))
     .returning();
+
+  if (!candidate) {
+    return undefined;
+  }
+
+  // אם הועלתה תמונה חדשה - מוחקים את הישנה
+  if (data.imageUrl && data.imageUrl !== existingCandidate.imageUrl) {
+    await deleteFile(existingCandidate.imageUrl);
+  }
+
+  // אם הועלה PDF חדש - מוחקים את הישן
+  if (
+    data.platformPdfUrl &&
+    data.platformPdfUrl !== existingCandidate.platformPdfUrl
+  ) {
+    await deleteFile(existingCandidate.platformPdfUrl);
+  }
 
   return candidate;
 };

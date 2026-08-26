@@ -1,86 +1,93 @@
 @baseUrl = http://localhost:3000/api/candidates
 
 
-### =========================
-
-
-### GET ALL
-
-
-### =========================
+### Get all candidates
 GET {{baseUrl}}
 
 
-### =========================
+###
+GET {{baseUrl}}/56ec85e6-7243-455b-8ebd-6a3c7114f23c
 
 
-### GET BY ID
-
-
-### =========================
-GET {{baseUrl}}/PUT_CANDIDATE_ID_HERE
-
-
-### =========================
-
-
-### CREATE
-
-
-### =========================
+### Create candidate
 POST {{baseUrl}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary123456
+
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="userId"
+
+8ad9db84-4289-4d0a-af9e-21856c869bf3
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="partyId"
+
+dfeccadc-80d0-44a2-8356-72918f1930c1
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="slogan"
+
+ביחד נבנה עתיד טוב יותר
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="description"
+
+אני פועל למען חברה טובה יותר, שוויונית וחזקה.
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="candidateImage"; filename="DSC_2402.jpg"
+Content-Type: image/jpeg
+
+< C:\Users\USER\Downloads\websizephotos\צלם 2\DSC_2402.jpg
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="candidatePlatform"; filename="sample-document.pdf"
+Content-Type: application/pdf
+
+< C:\Users\USER\Desktop\sample-document.pdf
+------WebKitFormBoundary123456--
+
+
+### Update candidate - text only
+
+
+### Update candidate - text only
+PATCH {{baseUrl}}/56ec85e6-7243-455b-8ebd-6a3c7114f23c
 Content-Type: application/json
 
 {
-  "userId": "aa391e1e-47cb-4909-956e-51636c8c9cb0",
-  "partyId": "18e729c8-23cf-46b1-a010-63bb67a04de4",
-  "slogan": "מנהיגות עם אחריות",
-  "description": "מועמד הפועל למען חברה טובה יותר.",
-  "imageUrl": "https://example.com/candidate.jpg",
-  "platformPdfUrl": "https://example.com/platform.pdf"
+  "slogan": "סיסמה מעודכנת"
 }
 
 
-### =========================
+### Update candidate - image
 
 
-### UPDATE
+### Update candidate - image
+PATCH {{baseUrl}}/56ec85e6-7243-455b-8ebd-6a3c7114f23c
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary123456
+
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="candidateImage"; filename="DSC_2402.jpg"
+Content-Type: image/jpeg
+
+< C:\Users\USER\Downloads\websizephotos\צלם 2\DSC_2402.jpg
+------WebKitFormBoundary123456--
 
 
-### =========================
-PATCH {{baseUrl}}/PUT_CANDIDATE_ID_HERE
-Content-Type: application/json
+### Update candidate - new image
+PATCH {{baseUrl}}/56ec85e6-7243-455b-8ebd-6a3c7114f23c
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary123456
 
-{
-  "slogan": "מנהיגות עם אחריות ושינוי"
-}
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="candidateImage"; filename="DSC_2402.jpg"
+Content-Type: image/jpeg
 
-
-### =========================
-
-
-### REJECT
+< C:\Users\USER\Downloads\websizephotos\צלם 2\DSC_2402.jpg
+------WebKitFormBoundary123456--
 
 
-### =========================
-PATCH {{baseUrl}}/PUT_CANDIDATE_ID_HERE/reject
+### Update candidate - new PDF
+PATCH {{baseUrl}}/56ec85e6-7243-455b-8ebd-6a3c7114f23c
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary123456
 
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="candidatePlatform"; filename="sample-document.pdf"
+Content-Type: application/pdf
 
-### =========================
-
-
-### RESTORE
-
-
-### =========================
-PATCH {{baseUrl}}/PUT_CANDIDATE_ID_HERE/restore
-
-
-### =========================
-
-
-### DELETE
-
-
-### =========================
-DELETE {{baseUrl}}/PUT_CANDIDATE_ID_HERE
+< C:\Users\USER\Desktop\sample-document.pdf
+------WebKitFormBoundary123456--

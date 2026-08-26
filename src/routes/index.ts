@@ -5,6 +5,7 @@ import userRoutes from "./userRoutes";
 import partyRoutes from "./partyRoutes";
 import electionRoutes from "./electionRoutes";
 import candidateRoutes from "./candidateRoutes";
+import fileRoutes from "./fileRoutes";
 
 const router = Router();
 
@@ -17,5 +18,7 @@ router.use("/parties", partyRoutes);
 router.use("/elections", electionRoutes);
 
 router.use("/candidates", candidateRoutes);
+
+router.use("/files", fileRoutes);
 
 export default router;

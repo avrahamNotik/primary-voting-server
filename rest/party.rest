@@ -11,22 +11,42 @@ GET {{baseUrl}}/9a796493-e01e-4b63-9970-9ce40cb97bdf
 
 ### Create party - Admin
 POST {{baseUrl}}
-Content-Type: application/json
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary123456
 
-{
-  "name": "מפלגת החברה הטובים",
-  "slogan": "ביחד בונים חברה טובה יותר",
-  "description": "מפלגת החברה הטובים פועלת למען חברה צודקת, שוויונית וחזקה יותר."
-}
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="name"
+
+מפלגת החברה הטובים
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="slogan"
+
+ביחד בונים חברה טובה יותר
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="description"
+
+מפלגת החברה הטובים פועלת למען חברה צודקת, שוויונית וחזקה יותר.
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="partyImage"; filename="DSC_2402.jpg"
+Content-Type: image/jpeg
+
+< C:\Users\USER\Downloads\websizephotos\צלם 2\DSC_2402.jpg
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="partyPlatform"; filename="sample-document.pdf"
+Content-Type: application/pdf
+
+< C:\Users\USER\Desktop\sample-document.pdf
+------WebKitFormBoundary123456--
 
 
 ### Update party - Admin
-PATCH {{baseUrl}}/9a796493-e01e-4b63-9970-9ce40cb97bdf
-Content-Type: application/json
+PATCH {{baseUrl}}/18e729c8-23cf-46b1-a010-63bb67a04de4
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary123456
 
-{
-  "slogan": "ביחד בונים עתיד טוב יותר"
-}
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="slogan"
+
+ביחד בונים עתיד טוב יותר
+------WebKitFormBoundary123456--
 
 
 ### Delete party - Admin

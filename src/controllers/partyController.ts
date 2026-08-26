@@ -8,6 +8,7 @@ import {
   updateParty,
 } from "../services/partyService";
 import { getParamId } from "../utils/getParamId";
+import { getFileUrl } from "../utils/getFileUrl";
 
 export const getAllPartiesController = async (_req: Request, res: Response) => {
   try {
@@ -60,7 +61,7 @@ export const getPartyByIdController = async (req: Request, res: Response) => {
 
 export const createPartyController = async (req: Request, res: Response) => {
   try {
-    const { name, slogan, description, imageUrl, platformPdfUrl } = req.body;
+    const { name, slogan, description } = req.body;
 
     if (!name || !slogan || !description) {
       res.status(400).json({
@@ -70,6 +71,15 @@ export const createPartyController = async (req: Request, res: Response) => {
 
       return;
     }
+
+    const files = req.files as {
+      partyImage?: Express.Multer.File[];
+      partyPlatform?: Express.Multer.File[];
+    };
+
+    const imageUrl = getFileUrl(files?.partyImage?.[0]);
+
+    const platformPdfUrl = getFileUrl(files?.partyPlatform?.[0]);
 
     const party = await createParty({
       name,

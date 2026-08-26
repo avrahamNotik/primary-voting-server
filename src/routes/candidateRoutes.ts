@@ -12,6 +12,8 @@ import {
 
 import { authMiddleware } from "../middleware/authMiddleware";
 import { requireRole } from "../middleware/roleMiddleware";
+import { candidateUpload } from "../middleware/candidateUploadMiddleware";
+import { candidateOwnershipMiddleware } from "../middleware/candidateOwnershipMiddleware";
 
 const router = Router();
 
@@ -19,9 +21,15 @@ router.get("/", getAllCandidatesController);
 
 router.get("/:id", getCandidateByIdController);
 
-router.post("/", authMiddleware, createCandidateController);
+router.post("/", authMiddleware, candidateUpload, createCandidateController);
 
-router.patch("/:id", authMiddleware, updateCandidateController);
+router.patch(
+  "/:id",
+  authMiddleware,
+  candidateOwnershipMiddleware,
+  candidateUpload,
+  updateCandidateController,
+);
 
 router.patch(
   "/:id/reject",

@@ -11,6 +11,7 @@ import {
 } from "../services/candidateService";
 
 import { getParamId } from "../utils/getParamId";
+import { getFileUrl } from "../utils/getFileUrl";
 
 export const getAllCandidatesController = async (
   _req: Request,
@@ -74,8 +75,7 @@ export const createCandidateController = async (
   res: Response,
 ) => {
   try {
-    const { userId, partyId, slogan, description, imageUrl, platformPdfUrl } =
-      req.body ?? {};
+    const { userId, partyId, slogan, description } = req.body ?? {};
 
     if (!userId || !partyId || !slogan || !description) {
       res.status(400).json({
@@ -85,6 +85,15 @@ export const createCandidateController = async (
 
       return;
     }
+
+    const files = req.files as {
+      candidateImage?: Express.Multer.File[];
+      candidatePlatform?: Express.Multer.File[];
+    };
+
+    const imageUrl = getFileUrl(files?.candidateImage?.[0]);
+
+    const platformPdfUrl = getFileUrl(files?.candidatePlatform?.[0]);
 
     const candidate = await createCandidate({
       userId,
@@ -120,13 +129,28 @@ export const updateCandidateController = async (
       return;
     }
 
-    const { slogan, description, imageUrl, platformPdfUrl } = req.body ?? {};
+    const { slogan, description } = req.body ?? {};
+
+    const files = req.files as {
+      candidateImage?: Express.Multer.File[];
+      candidatePlatform?: Express.Multer.File[];
+    };
+
+    const imageUrl = getFileUrl(files?.candidateImage?.[0]);
+
+    const platformPdfUrl = getFileUrl(files?.candidatePlatform?.[0]);
 
     const candidate = await updateCandidate(id, {
       slogan,
       description,
-      imageUrl,
-      platformPdfUrl,
+
+      ...(imageUrl && {
+        imageUrl,
+      }),
+
+      ...(platformPdfUrl && {
+        platformPdfUrl,
+      }),
     });
 
     if (!candidate) {

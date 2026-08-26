@@ -1,0 +1,14 @@
+@baseUrl = http://localhost:3000/api/files
+
+
+### Upload party image
+POST {{baseUrl}}/party/image
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary123456
+
+------WebKitFormBoundary123456
+Content-Disposition: form-data; name="partyImage"; filename="DSC_2402.jpg"
+Content-Type: image/jpeg
+
+< C:\Users\USER\Downloads\websizephotos\צלם 2\DSC_2402.jpg
+------WebKitFormBoundary123456--
+# Cookie: accessToken=YOUR_ACCESS_TOKEN

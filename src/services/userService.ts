@@ -6,11 +6,12 @@ import { db } from "../db";
 import { users } from "../db/schema";
 import { generateAccessToken } from "../config/auth";
 
-interface RegisterUserData {
+export interface RegisterUserData {
   givenName: string;
   familyName: string;
   email: string;
   password: string;
+  role?: "member" | "candidate";
 }
 
 export const registerUser = async (data: RegisterUserData) => {
@@ -33,6 +34,7 @@ export const registerUser = async (data: RegisterUserData) => {
       familyName: data.familyName,
       email: data.email,
       passwordHash,
+      role: data.role ?? "member",
     })
     .returning({
       id: users.id,
