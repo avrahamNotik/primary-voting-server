@@ -1,0 +1,28 @@
+@baseUrl = http://localhost:3000/api/elections
+
+
+### Get all elections
+GET {{baseUrl}}
+
+
+### Create election
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "partyId": "18e729c8-23cf-46b1-a010-63bb67a04de4",
+  "startDate": "2026-08-28T08:00:00.000Z",
+  "endDate": "2026-08-29T22:00:00.000Z",
+  "maxCandidatesToSelect": 3
+}
+
+
+### Update election
+PATCH http://localhost:3000/api/elections/1e3819f8-51a3-4549-a442-cb92007fb141
+Content-Type: application/json
+
+{
+  "startDate": "2026-08-30T08:00:00.000Z",
+  "endDate": "2026-08-31T22:00:00.000Z",
+  "maxCandidatesToSelect": 3
+}

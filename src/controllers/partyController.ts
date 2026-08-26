@@ -29,16 +29,9 @@ export const getAllPartiesController = async (_req: Request, res: Response) => {
 
 export const getPartyByIdController = async (req: Request, res: Response) => {
   try {
-    const id = getParamId(req);
+    const id = getParamId(req, res);
 
-    if (!id) {
-      res.status(400).json({
-        success: false,
-        message: "Invalid party id",
-      });
-
-      return;
-    }
+    if (!id) return;
 
     const party = await getPartyById(id);
 
@@ -102,16 +95,9 @@ export const createPartyController = async (req: Request, res: Response) => {
 
 export const updatePartyController = async (req: Request, res: Response) => {
   try {
-    const id = getParamId(req);
+    const id = getParamId(req, res);
 
-    if (!id) {
-      res.status(400).json({
-        success: false,
-        message: "Invalid party id",
-      });
-
-      return;
-    }
+    if (!id) return;
 
     const party = await updateParty(id, req.body);
 
@@ -140,16 +126,9 @@ export const updatePartyController = async (req: Request, res: Response) => {
 
 export const deletePartyController = async (req: Request, res: Response) => {
   try {
-    const id = getParamId(req);
+    const id = getParamId(req, res);
 
-    if (!id) {
-      res.status(400).json({
-        success: false,
-        message: "Invalid party id",
-      });
-
-      return;
-    }
+    if (!id) return;
 
     const party = await deleteParty(id);
 

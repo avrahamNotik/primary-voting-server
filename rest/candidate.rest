@@ -1,0 +1,86 @@
+@baseUrl = http://localhost:3000/api/candidates
+
+
+### =========================
+
+
+### GET ALL
+
+
+### =========================
+GET {{baseUrl}}
+
+
+### =========================
+
+
+### GET BY ID
+
+
+### =========================
+GET {{baseUrl}}/PUT_CANDIDATE_ID_HERE
+
+
+### =========================
+
+
+### CREATE
+
+
+### =========================
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "userId": "aa391e1e-47cb-4909-956e-51636c8c9cb0",
+  "partyId": "18e729c8-23cf-46b1-a010-63bb67a04de4",
+  "slogan": "מנהיגות עם אחריות",
+  "description": "מועמד הפועל למען חברה טובה יותר.",
+  "imageUrl": "https://example.com/candidate.jpg",
+  "platformPdfUrl": "https://example.com/platform.pdf"
+}
+
+
+### =========================
+
+
+### UPDATE
+
+
+### =========================
+PATCH {{baseUrl}}/PUT_CANDIDATE_ID_HERE
+Content-Type: application/json
+
+{
+  "slogan": "מנהיגות עם אחריות ושינוי"
+}
+
+
+### =========================
+
+
+### REJECT
+
+
+### =========================
+PATCH {{baseUrl}}/PUT_CANDIDATE_ID_HERE/reject
+
+
+### =========================
+
+
+### RESTORE
+
+
+### =========================
+PATCH {{baseUrl}}/PUT_CANDIDATE_ID_HERE/restore
+
+
+### =========================
+
+
+### DELETE
+
+
+### =========================
+DELETE {{baseUrl}}/PUT_CANDIDATE_ID_HERE

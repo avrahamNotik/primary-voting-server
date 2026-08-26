@@ -1,7 +1,16 @@
-import type { Request } from "express";
+import type { Request, Response } from "express";
 
-export const getParamId = (req: Request): string | null => {
+export const getParamId = (req: Request, res: Response): string | null => {
   const { id } = req.params;
 
-  return typeof id === "string" ? id : null;
+  if (typeof id !== "string") {
+    res.status(400).json({
+      success: false,
+      message: "Invalid id",
+    });
+
+    return null;
+  }
+
+  return id;
 };

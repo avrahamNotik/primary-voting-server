@@ -6,7 +6,7 @@ GET {{baseUrl}}
 
 
 ### Get party by id
-GET {{baseUrl}}/PUT_PARTY_ID_HERE
+GET {{baseUrl}}/9a796493-e01e-4b63-9970-9ce40cb97bdf
 
 
 ### Create party - Admin
@@ -21,7 +21,7 @@ Content-Type: application/json
 
 
 ### Update party - Admin
-PATCH {{baseUrl}}/PUT_PARTY_ID_HERE
+PATCH {{baseUrl}}/9a796493-e01e-4b63-9970-9ce40cb97bdf
 Content-Type: application/json
 
 {
@@ -30,4 +30,4 @@ Content-Type: application/json
 
 
 ### Delete party - Admin
-DELETE {{baseUrl}}/PUT_PARTY_ID_HERE
+DELETE {{baseUrl}}/9a796493-e01e-4b63-9970-9ce40cb97bdf
