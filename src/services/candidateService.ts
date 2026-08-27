@@ -3,16 +3,52 @@ import { eq } from "drizzle-orm";
 import { deleteFile } from "./fileService";
 
 import { db } from "../db";
-import { candidates } from "../db/schema";
+import { candidates, users } from "../db/schema";
 
 export const getAllCandidates = async () => {
-  return db.select().from(candidates);
+  return db
+    .select({
+      id: candidates.id,
+      userId: candidates.userId,
+      partyId: candidates.partyId,
+
+      givenName: users.givenName,
+      familyName: users.familyName,
+
+      slogan: candidates.slogan,
+      description: candidates.description,
+      imageUrl: candidates.imageUrl,
+      platformPdfUrl: candidates.platformPdfUrl,
+      status: candidates.status,
+
+      createdAt: candidates.createdAt,
+      updatedAt: candidates.updatedAt,
+    })
+    .from(candidates)
+    .innerJoin(users, eq(candidates.userId, users.id));
 };
 
 export const getCandidateById = async (id: string) => {
   const [candidate] = await db
-    .select()
+    .select({
+      id: candidates.id,
+      userId: candidates.userId,
+      partyId: candidates.partyId,
+
+      givenName: users.givenName,
+      familyName: users.familyName,
+
+      slogan: candidates.slogan,
+      description: candidates.description,
+      imageUrl: candidates.imageUrl,
+      platformPdfUrl: candidates.platformPdfUrl,
+      status: candidates.status,
+
+      createdAt: candidates.createdAt,
+      updatedAt: candidates.updatedAt,
+    })
     .from(candidates)
+    .innerJoin(users, eq(candidates.userId, users.id))
     .where(eq(candidates.id, id))
     .limit(1);
 

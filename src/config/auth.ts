@@ -13,7 +13,7 @@ export interface JwtPayload {
 
 export const generateAccessToken = (payload: JwtPayload) => {
   return jwt.sign(payload, JWT_SECRET, {
-    expiresIn: "15m",
+    expiresIn: "24h",
   });
 };
 

@@ -5,8 +5,8 @@ Content-Type: application/json
 {
   "givenName": "אבדגהרהם",
   "familyName": "נוטיק",
-  "email": "dsdxxxxsdd@test.com",
-  "role": "candidate",
+  "email": "dsdcfgdd@test.com",
+  "role": "admin",
   "password": "123456"
 }
 
